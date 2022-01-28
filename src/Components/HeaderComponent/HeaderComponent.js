@@ -2,12 +2,13 @@ import React from 'react';
 import logo from '../../img/logo.svg';
 import './HeaderComponent.scss';
 
-const HeaderComponent = () => {
+const HeaderComponent = (props) => {
+  const { title } = props;
   return (
     <header className="Header-container">
       <div>
         <img src={logo} alt="logo" />
-        <h1>Зарегистрироваться в системе</h1>
+        <h1>{title}</h1>
       </div>
     </header>
   );
