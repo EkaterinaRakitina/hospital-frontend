@@ -6,7 +6,7 @@ const HeaderComponent = () => {
   return (
     <header className="Header-container">
       <div>
-          <img src={logo} alt="logo"/>
+        <img src={logo} alt="logo" />
         <h1>Зарегистрироваться в системе</h1>
       </div>
     </header>

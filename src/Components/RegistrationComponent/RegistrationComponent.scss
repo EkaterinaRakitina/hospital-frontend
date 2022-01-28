@@ -9,7 +9,7 @@
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
-  padding: 140px 0 96px 0;
+  height: 86vh;
 }
 
 .Image-container {
@@ -32,12 +32,11 @@
     font-weight: 300;
     font-size: 36px;
     line-height: 42px;
-    margin: 0 0 40px 0;
+    margin-bottom: 40px;
   }
 }
 
 .Form-container {
-
   form {
     display: flex;
     flex-direction: column;
@@ -88,13 +87,16 @@
     font-size: 18px;
     line-height: 21px;
     color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 8px;
   }
 
-  p {
+  a {
     align-self: flex-end;
     font-style: normal;
     font-weight: 300;
     font-size: 18px;
     line-height: 21px;
+    text-decoration: none;
+    color: #000;
   }
 }

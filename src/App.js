@@ -1,5 +1,5 @@
 import React from 'react';
-import RegistrationComponent from "./Components/RegistrationComponent/RegistrationComponent"
+import RegistrationComponent from "./Components/RegistrationComponent/RegistrationComponent";
 import './App.scss';
 
 const App = () => {
@@ -8,7 +8,6 @@ const App = () => {
     <div className="App">
       <div className="App-container">
         <RegistrationComponent />
-
       </div>
     </div>
   );

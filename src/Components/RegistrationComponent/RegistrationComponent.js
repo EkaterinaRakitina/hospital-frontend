@@ -37,7 +37,7 @@ const RegistrationComponent = () => {
                 placeholder="Password"
               />
               <button>Зарегистрироваться</button>
-              <p href="#">Авторизоваться</p>
+              <a href="#">Авторизоваться</a>
             </form>
           </div>
         </div>
