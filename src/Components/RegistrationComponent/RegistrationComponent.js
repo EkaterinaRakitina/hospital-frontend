@@ -4,6 +4,11 @@ import image from '../../img/image.png';
 import './RegistrationComponent.scss';
 
 const RegistrationComponent = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+  };
+
   return (
     <div className="Registration-container">
       <HeaderComponent />
@@ -14,13 +19,23 @@ const RegistrationComponent = () => {
         <div className="Registration-form-container">
           <h2>Регистрация</h2>
           <div className="Form-container">
-            <form>
+            <form onSubmit={handleSubmit}>
               <label>Login: </label>
-              <input type="login" id="login" name="login" placeholder="Login"/>
+              <input type="text" id="login" name="login" placeholder="Login" />
               <label>Password: </label>
-              <input type="password" id="password" name="password" placeholder="Password" />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+              />
               <label> Repeat password: </label>
-              <input type="repeat" id="repeat" name="repeat" placeholder="Password" />
+              <input
+                type="password"
+                id="repeatPassword"
+                name="repeatPassword"
+                placeholder="Password"
+              />
               <button>Зарегистрироваться</button>
               <p href="#">Авторизоваться</p>
             </form>
