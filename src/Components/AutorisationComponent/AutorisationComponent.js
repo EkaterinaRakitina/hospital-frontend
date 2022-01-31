@@ -6,9 +6,6 @@ import './AutorisationComponent.scss';
 
 const AutorisationComponent = () => {
 
-  // const handleSubmit = (e) => {
-  // };
-
   return (
     <div className="Autorisation-container">
       <HeaderComponent title="Войти в систему" />
