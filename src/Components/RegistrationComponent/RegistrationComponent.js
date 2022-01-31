@@ -1,14 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import image from '../../img/image.png';
 import './RegistrationComponent.scss';
 
 const RegistrationComponent = () => {
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+  const [open, setOpen] = useState({ flag: false, message: '' });
+  const { flag, message } = open;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const repassword = /^[A-Za-z0-9]{5,}\d{1,}$/;
+    
+    if (login.length > 5) {
+      if (repassword.test(password)) {
+        if (password !== repeatPassword) {
+          return setOpen({
+            flag: true,
+            message: 'Пароли не совпадают. Повторите попытку',
+          });
+        }
+      } else {
+        return setOpen({
+          flag: true,
+          message: 'Неверно введен пароль. Повторите попытку',
+        });
+      }
+    } else {
+      return setOpen({
+        flag: true,
+        message: 'Неверно введен логин. Повторите попытку',
+      });
+    }
   };
+
+  const handleCloseSnackbar = () => {
+    setOpen({ flag: false, message: '' });
+  }
 
   return (
     <div className="Registration-container">
@@ -20,18 +52,32 @@ const RegistrationComponent = () => {
         <div className="Registration-form-container">
           <h2>Регистрация</h2>
           <div className="Form-container">
-            <form onSubmit={handleSubmit}>
+            <form>
               <label>Login: </label>
-              <input type="text" name="login" placeholder="Login" />
+              <input
+                type="text"
+                name="login"
+                value={login}
+                placeholder="Login"
+                onChange={(e) => setLogin(e.target.value)}
+              />
               <label>Password: </label>
-              <input type="password" name="password" placeholder="Password" />
+              <input
+                type="password"
+                name="password"
+                value={password}
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <label> Repeat password: </label>
               <input
                 type="password"
                 name="repeatPassword"
+                value={repeatPassword}
                 placeholder="Password"
+                onChange={(e) => setRepeatPassword(e.target.value)}
               />
-              <button>Зарегистрироваться</button>
+              <button onClick={(e) => handleSubmit(e)}>Зарегистрироваться</button>
               <Link to="/login">
                 <p>Авторизоваться</p>
               </Link>
@@ -39,6 +85,12 @@ const RegistrationComponent = () => {
           </div>
         </div>
       </div>
+      <Snackbar
+        open={flag}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        message={message}
+      />
     </div>
   );
 };
