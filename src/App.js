@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import RegistrationComponent from './Components/RegistrationComponent/RegistrationComponent';
-import AutorisationComponent from './Components/AutorisationComponent/AutorisationComponent';
+import AuthorizationComponent from './Components/AuthorizationComponent/AuthorizationComponent';
 import './App.scss';
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
       <div className="App-container">
         <Routes>
           <Route path="/signup" element={<RegistrationComponent />} />
-          <Route path="/login" element={<AutorisationComponent />} />
+          <Route path="/login" element={<AuthorizationComponent />} />
           <Route path="*" element={<Navigate to="/signup" />} />
         </Routes>
       </div>
