@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Snackbar from '@mui/material/Snackbar';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import image from '../../img/image.png';
 import './AutorisationComponent.scss';
 
 const AutorisationComponent = () => {
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [open, setOpen] = useState({ flag: false, message: '' });
+  const { flag, message } = open;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!login || !password) {
+      return setOpen({
+        flag: true,
+        message: 'Заполните все поля'
+      })
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpen({ flag: false, message: '' });
+  }
 
   return (
     <div className="Autorisation-container">
@@ -18,15 +37,22 @@ const AutorisationComponent = () => {
           <div className="Form-container">
             <form>
               <label>Login: </label>
-              <input type="text" id="login" name="login" placeholder="Login" />
+              <input
+                type="text"
+                name="login"
+                value={login}
+                placeholder="Login"
+                onChange={(e) => setLogin(e.target.value)}
+              />
               <label>Password: </label>
               <input
                 type="password"
-                id="password"
                 name="password"
+                value={password}
                 placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
               />
-              <button>Войти</button>
+              <button onClick={(e) => handleSubmit(e)}>Войти</button>
               <Link to="/signup">
                 <p>Зарегистрироваться</p>
               </Link>
@@ -34,6 +60,12 @@ const AutorisationComponent = () => {
           </div>
         </div>
       </div>
+      <Snackbar
+        open={flag}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        message={message}
+      />
     </div>
   );
 };
