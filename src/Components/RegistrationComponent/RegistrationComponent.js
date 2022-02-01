@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
@@ -12,10 +13,10 @@ const RegistrationComponent = () => {
   const [open, setOpen] = useState({ flag: false, message: '' });
   const { flag, message } = open;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const repassword = /^[A-Za-z0-9]{5,}\d{1,}$/;
-    
+
     if (login.length > 5) {
       if (repassword.test(password)) {
         if (password !== repeatPassword) {
@@ -23,24 +24,39 @@ const RegistrationComponent = () => {
             flag: true,
             message: 'Пароли не совпадают. Повторите попытку',
           });
+        } else {
+          await axios
+            .post('http://localhost:8000/registration', {
+              login,
+              password,
+            })
+            .then((res) => {
+              localStorage.setItem('token', res.data.token);
+            //  history.push('/main');
+              setLogin('');
+              setPassword('');
+              setRepeatPassword('');
+            });
         }
       } else {
         return setOpen({
           flag: true,
-          message: 'Неверно введен пароль. Пароль должен содержать не меньше 6 латинских символов. Обязательно должен содержать 1 число',
+          message:
+            'Неверно введен пароль. Пароль должен содержать не меньше 6 латинских символов. Обязательно должен содержать 1 число',
         });
       }
     } else {
       return setOpen({
         flag: true,
-        message: 'Неверно введен логин. Логин должен содержать не меньше 6 символов',
+        message:
+          'Неверно введен логин. Логин должен содержать не меньше 6 символов',
       });
     }
   };
 
   const handleCloseSnackbar = () => {
     setOpen({ flag: false, message: '' });
-  }
+  };
 
   return (
     <div className="Registration-container">
@@ -77,7 +93,9 @@ const RegistrationComponent = () => {
                 placeholder="Password"
                 onChange={(e) => setRepeatPassword(e.target.value)}
               />
-              <button onClick={(e) => handleSubmit(e)}>Зарегистрироваться</button>
+              <button onClick={(e) => handleSubmit(e)}>
+                Зарегистрироваться
+              </button>
               <Link to="/login">
                 <p>Авторизоваться</p>
               </Link>
