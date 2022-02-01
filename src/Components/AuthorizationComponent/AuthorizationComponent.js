@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import Snackbar from '@mui/material/Snackbar';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import image from '../../img/image.png';
-import './AutorisationComponent.scss';
+import './AuthorizationComponent.scss';
 
-const AutorisationComponent = () => {
+const AuthorizationComponent = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [open, setOpen] = useState({ flag: false, message: '' });
@@ -17,7 +17,7 @@ const AutorisationComponent = () => {
       return setOpen({
         flag: true,
         message: 'Заполните все поля'
-      })
+      });
     }
   };
 
@@ -26,13 +26,13 @@ const AutorisationComponent = () => {
   }
 
   return (
-    <div className="Autorisation-container">
+    <div className="Authorization-container">
       <HeaderComponent title="Войти в систему" />
-      <div className="Autorisation-wrapper">
+      <div className="Authorization-wrapper">
         <div className="Image-container">
           <img src={image} alt="hospital" />
         </div>
-        <div className="Autorisation-form-container">
+        <div className="Authorization-form-container">
           <h2>Войти в систему</h2>
           <div className="Form-container">
             <form>
@@ -70,4 +70,4 @@ const AutorisationComponent = () => {
   );
 };
 
-export default AutorisationComponent;
+export default AuthorizationComponent;
