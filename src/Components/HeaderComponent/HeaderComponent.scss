@@ -2,12 +2,17 @@
   background: #c5e9ff;
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 
-  div {
+  .Header-wrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: 0 auto;
     max-width: 90%;
     padding: 15px 0 18px 0;
+  }
+
+  div {
+    display: flex;
   }
 
   img {
@@ -18,4 +23,17 @@
     font-weight: normal;
   }
 
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 11px;
+    background: #ffffff;
+    border: 1px solid #cee8f8;
+    border-radius: 4px;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+  }
 }

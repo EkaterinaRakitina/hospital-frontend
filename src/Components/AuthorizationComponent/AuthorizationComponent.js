@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
@@ -11,6 +12,7 @@ const AuthorizationComponent = () => {
   const [password, setPassword] = useState('');
   const [open, setOpen] = useState({ flag: false, message: '' });
   const { flag, message } = open;
+  const history = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,6 +31,7 @@ const AuthorizationComponent = () => {
           localStorage.setItem('token', res.data.token);
           setLogin('');
           setPassword('');
+          history('/main');
         });
     }
   };
