@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import RegistrationComponent from './Components/RegistrationComponent/RegistrationComponent';
 import AuthorizationComponent from './Components/AuthorizationComponent/AuthorizationComponent';
+import MainComponent from './Components/MainComponent/MainComponent';
 import './App.scss';
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/signup" element={<RegistrationComponent />} />
           <Route path="/login" element={<AuthorizationComponent />} />
+          <Route path="/main" element={<MainComponent />} />
           <Route path="*" element={<Navigate to="/signup" />} />
         </Routes>
       </div>

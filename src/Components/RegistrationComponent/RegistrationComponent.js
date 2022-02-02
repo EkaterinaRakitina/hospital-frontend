@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
@@ -12,6 +13,7 @@ const RegistrationComponent = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [open, setOpen] = useState({ flag: false, message: '' });
   const { flag, message } = open;
+  const history = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +37,7 @@ const RegistrationComponent = () => {
               setLogin('');
               setPassword('');
               setRepeatPassword('');
+              history('/main');
             });
         }
       } else {
