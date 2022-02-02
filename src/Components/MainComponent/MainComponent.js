@@ -8,14 +8,12 @@ const MainComponent = () => {
 
   const backToRegistration = () => {
     history('/signup');
-  }
-
-
+  };
 
   return (
     <div className="Main-container">
       <HeaderComponent title="Приемы">
-        <button onClick={()=> backToRegistration()}>Выход</button>
+        <button onClick={() => backToRegistration()}>Выход</button>
       </HeaderComponent>
     </div>
   );
