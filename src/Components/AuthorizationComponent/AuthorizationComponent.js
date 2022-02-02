@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import image from '../../img/image.png';
@@ -27,7 +27,6 @@ const AuthorizationComponent = () => {
         })
         .then((res) => {
           localStorage.setItem('token', res.data.token);
-          //  history.push('/main');
           setLogin('');
           setPassword('');
         });
