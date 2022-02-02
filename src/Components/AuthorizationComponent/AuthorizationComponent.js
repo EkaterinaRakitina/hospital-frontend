@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import HeaderComponent from '../HeaderComponent/HeaderComponent';
 import image from '../../img/image.png';
@@ -11,19 +12,30 @@ const AuthorizationComponent = () => {
   const [open, setOpen] = useState({ flag: false, message: '' });
   const { flag, message } = open;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!login || !password) {
       return setOpen({
         flag: true,
-        message: 'Заполните все поля'
+        message: 'Заполните все поля',
       });
+    } else {
+      await axios
+        .post('http://localhost:8000/authorization', {
+          login,
+          password,
+        })
+        .then((res) => {
+          localStorage.setItem('token', res.data.token);
+          setLogin('');
+          setPassword('');
+        });
     }
   };
 
   const handleCloseSnackbar = () => {
     setOpen({ flag: false, message: '' });
-  }
+  };
 
   return (
     <div className="Authorization-container">
