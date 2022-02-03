@@ -10,7 +10,8 @@ import {
 } from '@mui/material';
 import './TableComponent.scss';
 
-const TableComponent = () => {
+const TableComponent = ({ appointments }) => {
+
   return (
     <div className="Table-container">
       <div className="Table-wrapper">
@@ -26,15 +27,18 @@ const TableComponent = () => {
               </TableRow>
             </TableHead>
             <TableBody>
+              {appointments.map((appointment) => (
                 <TableRow
+                  key={ appointment._id }
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row"></TableCell>
-                  <TableCell align="center"></TableCell>
-                  <TableCell align="center"></TableCell>
-                  <TableCell align="center"></TableCell>
+                  <TableCell align="center">{appointment.name}</TableCell>
+                  <TableCell align="center">{appointment.doctor}</TableCell>
+                  <TableCell align="center">{appointment.date}</TableCell>
+                  <TableCell align="center">{appointment.symptom}</TableCell>
                   <TableCell align="center"></TableCell>
                 </TableRow>
+              ))}
             </TableBody>
           </Table>
         </TableContainer>
